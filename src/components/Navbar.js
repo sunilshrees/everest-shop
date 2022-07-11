@@ -137,18 +137,23 @@ const NavContainer = styled.nav`
             align-items: center;
             li {
                 margin: 0 0.5rem;
+                a {
+                    color: var(--clr-dark);
+                    font-size: 1.2rem;
+                    font-weight: 600;
+                    text-transform: capitalize;
+                    letter-spacing: var(--spacing);
+                    padding: 0.5rem;
+                    border-bottom: 2px solid transparent;
+                    transition: border-bottom 0.5s ease;
+
+                    &:hover{
+                        border-bottom: 2px solid var(--clr-red-light);
+                    transition: border-bottom 0.5s ease;
+                    }
+                }
             }
-            a {
-                color: var(--clr-dark);
-                font-size: 1.2rem;
-                font-weight: 600;
-                text-transform: capitalize;
-                letter-spacing: var(--spacing);
-                padding: 0.5rem;
-                border-bottom: 2px solid transparent;
-                transition: border-bottom 0.3s ease;
-            }
-        }
+           
         .cart-btn-wrapper {
             display: grid;
         }

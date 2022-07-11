@@ -98,7 +98,7 @@ const CheckoutForm = () => {
                                         <button
                                             type='submit'
                                             className='btn submit'>
-                                            Sign Up
+                                            Submit
                                         </button>
                                         <button
                                             type='reset'

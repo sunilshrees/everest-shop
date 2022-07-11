@@ -14,7 +14,7 @@ const CartButtons = () => {
         <Wrapper className='cart-btn-wrapper'>
             <Link to='/cart' className='cart-btn' onClick={handleClick}>
                 <span className='cart-container'>
-                    <FaShoppingCart className='cart' />
+                    <FaShoppingCart />
                     <span className='cart-value'>{cartTotalQuantity}</span>
                 </span>
             </Link>
@@ -52,6 +52,7 @@ const Wrapper = styled.div`
         border-radius: 50%;
         svg {
             height: 1.5rem;
+            color: var(--clr-dark);
         }
     }
 
