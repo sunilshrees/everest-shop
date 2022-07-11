@@ -2,6 +2,9 @@ import React from 'react';
 import styled from 'styled-components';
 
 const Contact = () => {
+    const submitHandler = (e) => {
+        e.preventDefault();
+    };
     return (
         <div className='width-100'>
             <Wrapper>
@@ -13,7 +16,7 @@ const Contact = () => {
                             elit. Excepturi corrupti, odio neque ut molestias
                             facilis aperiam praesentium omnis tempore ex.
                         </p>
-                        <form className='contact-form'>
+                        <form className='contact-form' onSubmit={submitHandler}>
                             <input
                                 type='email'
                                 className='form-input'
@@ -52,10 +55,12 @@ const Wrapper = styled.section`
     .submit-btn {
         font-size: 1rem;
         padding: 0.5rem 1rem;
+        outline: none;
+        border: none;
     }
     .form-input {
         border-right: none;
-        color: var(--clr-gray);
+        color: var(--clr-dark);
         border-top-left-radius: var(--radius);
         border-bottom-left-radius: var(--radius);
     }
@@ -64,7 +69,7 @@ const Wrapper = styled.section`
         border-bottom-right-radius: var(--radius);
     }
     .form-input::placeholder {
-        color: var(--clr-dark);
+        color: var(--clr-gray);
         text-transform: capitalize;
     }
     .submit-btn {

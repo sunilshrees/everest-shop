@@ -12,7 +12,7 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.nav`
-    height: 3vh;
+    height: 4vh;
     display: flex;
     align-items: center;
     justify-content: center;

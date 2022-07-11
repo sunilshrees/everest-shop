@@ -4,8 +4,12 @@ import { FaBars } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import { links } from '../utils/constants';
 import CartButtons from './CartButtons';
+import { useDispatch } from 'react-redux';
+import { toggleSidebar } from '../features/sidebarSlice';
 
 const Nav = () => {
+    const dispatch = useDispatch();
+
     const [show, setShow] = useState(false);
     const controlNavbar = () => {
         if (window.scrollY >= 31) {
@@ -13,6 +17,9 @@ const Nav = () => {
         } else {
             setShow(false);
         }
+    };
+    const handleClick = () => {
+        dispatch(toggleSidebar());
     };
     useEffect(() => {
         window.addEventListener('scroll', controlNavbar);
@@ -32,10 +39,14 @@ const Nav = () => {
                             Everest<span>Shop</span>
                         </Link>
                     </h3>
-                    <button type='button' className='nav-toggle'>
+                    <button
+                        type='button'
+                        className='nav-toggle'
+                        onClick={handleClick}>
                         <FaBars />
                     </button>
                 </div>
+
                 <ul className='nav-links'>
                     {links.map((link) => {
                         const { id, text, url } = link;
@@ -45,13 +56,14 @@ const Nav = () => {
                             </li>
                         );
                     })}
+
                     {/* {myUser && (
                         <li>
                             <Link to='/checkout'>Checkout</Link>
                         </li>
                     )} */}
+                    <CartButtons />
                 </ul>
-                <CartButtons />
             </div>
         </NavContainer>
     );
@@ -59,20 +71,20 @@ const Nav = () => {
 
 const NavContainer = styled.nav`
     width: 100%;
-    height: 8vh;
+    height: 10vh;
     display: flex;
     align-items: center;
     justify-content: center;
     box-shadow: var(--light-shadow);
     z-index: 40;
-    position: relative;
+
     background: var(--clr-white);
 
-    &.fixed {
-        position: fixed;
-        top: 0;
-        box-shadow: var(--dark-shadow);
-    }
+    // &.fixed {
+    //     position: fixed;
+    //     top: 0;
+    //     box-shadow: var(--dark-shadow);
+    // }
 
     .nav-center {
         width: 90vw;
@@ -109,18 +121,20 @@ const NavContainer = styled.nav`
     .cart-btn-wrapper {
         display: none;
     }
+
     @media (min-width: 992px) {
         .nav-toggle {
             display: none;
         }
         .nav-center {
             display: grid;
-            grid-template-columns: auto 1fr auto;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
         }
         .nav-links {
             display: flex;
-            justify-content: center;
+            justify-content: end;
+            align-items: center;
             li {
                 margin: 0 0.5rem;
             }
@@ -133,11 +147,6 @@ const NavContainer = styled.nav`
                 padding: 0.5rem;
                 border-bottom: 2px solid transparent;
                 transition: border-bottom 0.3s ease;
-
-                &:hover {
-                    border-bottom: 2px solid var(--clr-dark);
-                    transition: border-bottom 0.8s ease;
-                }
             }
         }
         .cart-btn-wrapper {

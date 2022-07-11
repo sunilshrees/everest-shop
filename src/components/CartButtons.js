@@ -2,18 +2,24 @@ import React from 'react';
 import { FaShoppingCart, FaUserPlus } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
+import { useSelector, useDispatch } from 'react-redux';
+import { toggleSidebar } from '../features/sidebarSlice';
 const CartButtons = () => {
+    const dispatch = useDispatch();
+    const { cartTotalQuantity } = useSelector((state) => state.cart);
+    const handleClick = () => {
+        dispatch(toggleSidebar());
+    };
     return (
         <Wrapper className='cart-btn-wrapper'>
-            <Link to='/cart' className='cart-btn'>
+            <Link to='/cart' className='cart-btn' onClick={handleClick}>
                 <span className='cart-container'>
                     <FaShoppingCart className='cart' />
-                    <span className='cart-value'>0</span>
+                    <span className='cart-value'>{cartTotalQuantity}</span>
                 </span>
             </Link>
 
-            <button type='button' className='auth-btn'>
+            <button type='button' className='auth-btn' onClick={handleClick}>
                 Login <FaUserPlus />
             </button>
         </Wrapper>
@@ -21,19 +27,18 @@ const CartButtons = () => {
 };
 
 const Wrapper = styled.div`
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: column;
     align-items: center;
-    width: 150px;
+
+    margin-left: -1rem;
 
     .cart-btn {
-        color: var(--clr-grey-1);
         font-size: 1.5rem;
         letter-spacing: var(--spacing);
-        color: var(--clr-grey-1);
         display: flex;
-
         align-items: center;
+        margin: 0.5rem 1.5rem 1rem;
     }
     .cart-container {
         display: flex;
@@ -70,13 +75,27 @@ const Wrapper = styled.div`
         align-items: center;
         background: transparent;
         border-color: transparent;
-        font-size: 1rem;
+        font-size: 1.7rem;
+        font-family: Raleway;
         font-weight: 600;
         cursor: pointer;
-        color: var(--clr-grey-1);
         letter-spacing: var(--spacing);
+        margin-left: 20px;
         svg {
             margin-left: 5px;
+        }
+    }
+    @media screen and (min-width: 992px) {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        width: 150px;
+
+        margin-left: 14vw;
+
+        .auth-btn {
+            font-size: 1.2rem;
+            margin-left: 0;
         }
     }
 `;

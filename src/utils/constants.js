@@ -38,3 +38,5 @@ export const services = [
         text: 'Lorem ipsum, dolor sit amet consectetur adipisicing elit. Voluptates, ea. Perferendis corrupti reiciendis nesciunt rerum velit autem unde numquam nisi',
     },
 ];
+
+export const IMAGE_URL = process.env.REACT_APP_IMAGE_LINK;

@@ -37,7 +37,6 @@ a {
 }
 
 hr {
-    border: none;
     border-top: 1px solid var(--clr-gray);
 }
 h1,
@@ -95,6 +94,38 @@ p {
         line-height: 1;
     }
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type='number'] {
+    -moz-appearance: textfield;
+}
+input[type='date'] {
+    cursor: pointer;
+}
+
+::selection {
+    color: var(--clr-red);
+    background: #fde0db;
+}
+
+.error {
+    position: absolute;
+    top: 3.5rem;
+    left: 12rem;
+    color: var(--clr-red);
+    font-size: 1rem;
+}
+
+.is-invalid {
+    border-bottom: 1px solid red;
+}
+
 .width-100 {
     width: 100%;
     background: var(--clr-gray-light);
@@ -109,11 +140,11 @@ p {
 }
 
 .page-100 {
-    min-height: 82vh;
+    min-height: calc(100vh - (14vh + 5rem));
     padding: 5rem 0;
 }
 .page {
-    min-height: 75vh;
+    min-height: calc(100vh - (34vh + 5rem));
 }
 
 .btn {
@@ -132,7 +163,18 @@ p {
     border-color: transparent;
 }
 .btn:hover {
-    color: var(--clr-dark);
     background: var(--clr-red-light);
     transition: 0.3s linear;
+}
+
+.title {
+    text-align: center;
+}
+.title .underline {
+    width: 6rem;
+    height: 0.25rem;
+    background: #49a6e9;
+    background: var(--clr-red);
+    margin-left: auto;
+    margin-right: auto;
 }

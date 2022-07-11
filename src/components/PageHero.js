@@ -31,6 +31,7 @@ const Wrapper = styled.section`
     }
     a:hover {
         color: var(--clr-dark);
+        transition: 0.3s linear;
     }
 `;
 
