@@ -19,16 +19,24 @@ const cartSlice = createSlice({
             );
 
             if (existingIndex >= 0) {
-                state.cartItems[existingIndex] = {
-                    ...state.cartItems[existingIndex],
-                    cartQuantity:
-                        state.cartItems[existingIndex].cartQuantity + 1,
-                };
-                toast.info('Increased product quantity', {
-                    position: 'top-right',
-                });
+                let newAmount = state.cartItems[existingIndex].cartQuantity + 1;
+                if (newAmount > state.cartItems[existingIndex].stock) {
+                    newAmount = state.cartItems[existingIndex].stock;
+                    state.cartItems[existingIndex] = {
+                        ...state.cartItems[existingIndex],
+                        cartQuantity: newAmount,
+                    };
+                } else {
+                    state.cartItems[existingIndex] = {
+                        ...state.cartItems[existingIndex],
+                        cartQuantity: newAmount,
+                    };
+                }
             } else {
-                let tempProductItem = { ...action.payload, cartQuantity: 1 };
+                let tempProductItem = {
+                    ...action.payload,
+                    cartQuantity: action.payload.amount,
+                };
                 state.cartItems.push(tempProductItem);
                 toast.success('Product added to cart', {
                     position: 'top-right',

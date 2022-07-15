@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getSingleProduct } from '../features/productsSlice';
 import { PageHero } from '../components';
@@ -15,13 +15,33 @@ const SingleProduct = () => {
     const singleProduct = useSelector(getSingleProduct);
     const { id, name, image, price, stock, createDate } = singleProduct[0];
 
+    const [amount, setAmount] = useState(1);
+
     const nepPrice = Number(price.substring(1)) * 125;
 
-    const productToCart = { id, name, image, nepPrice, stock };
+    const productToCart = { id, name, image, nepPrice, stock, amount };
 
     const clickHandler = (product) => {
         dispatch(addToCart(product));
         navigate('/cart');
+    };
+    const inc = () => {
+        setAmount((oldAmount) => {
+            let tempAmount = oldAmount + 1;
+            if (tempAmount > stock) {
+                tempAmount = stock;
+            }
+            return tempAmount;
+        });
+    };
+    const dec = () => {
+        setAmount((oldAmount) => {
+            let tempAmount = oldAmount - 1;
+            if (tempAmount < 1) {
+                tempAmount = 1;
+            }
+            return tempAmount;
+        });
     };
 
     return (
@@ -42,9 +62,7 @@ const SingleProduct = () => {
                     <section className='content'>
                         <h2>{name}</h2>
 
-                        <h5 className='price'>
-                            Rs. {formatPrice(nepPrice)}
-                        </h5>
+                        <h5 className='price'>Rs. {formatPrice(nepPrice)}</h5>
                         <p className='desc'>
                             Lorem ipsum dolor sit amet consectetur adipisicing
                             elit. Reiciendis ut ratione eum mollitia minima
@@ -73,6 +91,17 @@ const SingleProduct = () => {
                                 }
                             )}`}
                         </p>
+                        <p className='info'>
+                            <span>Amount :</span>
+                            <div className='buttons'>
+                                <button onClick={dec}>-</button>
+
+                                <h4>{amount}</h4>
+
+                                <button onClick={inc}>+</button>
+                            </div>
+                        </p>
+
                         <hr />
                         {/* <AddToCart /> */}
                         {stock && (
@@ -137,8 +166,33 @@ const Wrapper = styled.main`
         width: 300px;
         display: grid;
         grid-template-columns: 125px 1fr;
+        align-items: center;
         span {
             font-weight: 700;
+        }
+        .buttons {
+            display: grid;
+            width: 150px;
+            justify-items: center;
+            grid-template-columns: repeat(3, 1fr);
+            align-items: center;
+            justify-content: center;
+
+            button {
+                background: var(--clr-gray);
+                border-color: transparent;
+                cursor: pointer;
+                padding: 1rem 0;
+                width: 2rem;
+                height: 1rem;
+                font-size: 1rem;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            h4 {
+                margin: 0 10px;
+            }
         }
     }
 

@@ -48,7 +48,7 @@ const Wrapper = styled.section`
         width: 90vw;
         max-width: 500px;
         display: grid;
-        grid-template-columns: 1fr auto;
+        grid-template-columns: 1fr;
     }
 
     .form-input,
@@ -83,6 +83,11 @@ const Wrapper = styled.section`
     .submit-btn:hover {
         background: var(--clr-red-light);
         color: var(--clr-dark);
+    }
+    @media (min-width: 400px) {
+        .contact-form {
+            grid-template-columns: 1fr auto;
+        }
     }
     @media (min-width: 992px) {
         .content {

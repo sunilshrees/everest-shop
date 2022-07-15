@@ -48,7 +48,7 @@ const CheckoutForm = () => {
                             deliveryAddress: '',
                             email: '',
                             phoneNumber: '',
-                            date: new Date(),
+                            date: '',
                         }}
                         validationSchema={validate}
                         onSubmit={(values) => {

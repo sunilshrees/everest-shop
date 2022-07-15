@@ -12,12 +12,7 @@ const Header = () => {
 };
 
 const HeaderContainer = styled.nav`
-    height: 4vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--clr-dark);
-    color: var(--clr-white);
+    display: none;
 
     .nav-center {
         width: 90vw;
@@ -27,6 +22,14 @@ const HeaderContainer = styled.nav`
         display: flex;
         align-items: center;
         justify-content: space-between;
+    }
+    @media (min-width: 430px) {
+        height: 4vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: var(--clr-dark);
+        color: var(--clr-white);
     }
 `;
 export default Header;

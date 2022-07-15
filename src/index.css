@@ -178,3 +178,45 @@ input[type='date'] {
     margin-left: auto;
     margin-right: auto;
 }
+
+/* paginate */
+
+.paginationBttns {
+    width: 80%;
+    height: 40px;
+    list-style: none;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.paginationBttns a {
+    padding: 5px 12px;
+    margin: 5px;
+    border-radius: 5px;
+    border: 1px solid rgb(163, 163, 163);
+    color: black;
+    cursor: pointer;
+
+    display: flex;
+}
+
+.paginationBttns a:hover {
+    color: var(--clr-red-light);
+    background-color: white;
+    border: 1px solid var(--clr-red-light);
+}
+
+.paginationActive a,
+.paginationActive a:hover {
+    color: white;
+    background-color: var(--clr-red);
+}
+
+.paginationDisabled a,
+.paginationDisabled a:hover {
+    color: var(--clr-gray);
+    background-color: white;
+    border: 1px solid var(--clr-gray);
+    cursor: default;
+}
